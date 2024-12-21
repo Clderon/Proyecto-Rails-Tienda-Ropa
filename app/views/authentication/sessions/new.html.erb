@@ -1,0 +1,46 @@
+
+<div class="Container">
+  <div>
+    <%= link_to productos_path do %>
+      <%= image_tag 'icons/volver.svg', width: 35, height: 35, alt: 'Ver productos' %>
+    <%end%>
+  </div>
+  <div class="Formulario-Transparente SesionCerrada py-3 px-2" style="display: block">
+    <%= form_with(url: sessions_path, id: "Form_inicio_sesion") do |form| %>
+      <h2 class="text-center">Inicia sesión</h2>
+      <div class="usuario">
+        <%= form.text_field :login, class: "form-control bg-transparent focus:outline-none focus:ring-0", required: true %>
+        <label for="cuenta">Cuenta de usuario</label>
+        <span></span>
+      </div>
+
+      <div class="usuario">
+        <%= form.password_field :password, class: "form-control bg-transparent focus:outline-none focus:ring-0", required: true %>
+        <label for="password">Contraseña</label>
+        <span></span>
+      </div>
+
+      <div class="recuerdame">
+        <%= form.check_box :recuerdame, id: "recuerdame" %>
+        <%= form.label :recuerdame, "Recuerdame" %>
+      </div>
+
+      <%= form.submit "Iniciar sesión", id: "enviar", class: "ingresar mt-3" %>
+
+    <% end %>
+    <%= form_tag '#',class:"flex flex-column mt-3", method: :post do %>
+      <%= button_tag type: 'button', class: 'btn-Google', id: 'btn-Google', style: 'text-align: center' do %>
+        <strong>Iniciar con cuenta Google</strong>
+        <%= image_tag 'google.png', style: 'width: 20px; float: left', alt: 'Google' %>
+      <% end %>
+      <div class="Registrar text-sm">
+        ¿No tiene cuenta registrada?
+        <%= link_to new_user_path, class: 'Registrar', id: 'Registrar' do %>
+          <strong>Registrar ahora</strong>
+        <% end %>
+      </div>
+    <% end %>
+
+  </div>
+
+</div>

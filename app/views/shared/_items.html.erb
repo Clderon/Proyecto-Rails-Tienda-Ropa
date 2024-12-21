@@ -1,0 +1,41 @@
+<div class="flex">
+  <% if Current.user && !Current.user.admin? %>
+    <%= link_to  carritos_path , class: 'flex flex-row-reverse py-2 px-4 h-[50px] items-center hover:bg-slate-300 transition duration-200 ease-in-out rounded border-1 border-gray-300 gap-3 justify-center items-center font-bold' do %>
+      <%= image_tag 'icons/shop.svg', width: 30, height: 30, class: 'mr-2' %>
+      <span>Carrito</span>
+    <% end %>
+  <% end %>
+  <div>
+      <ul class="flex items-center gap-2 justify-center h-full text-slate-950 mr-4">
+        <li>
+            <%= link_to "Pagos realizados", cargos_path, class: "mx-2 py-2 font-semibold relative after:content-[''] after:absolute after:left-0 after:bottom-0 after:h-[2px] after:w-full after:bg-slate-800 after:scale-x-0 after:origin-left hover:after:scale-x-100 after:transition-transform after:duration-300 ease-in-out"  if Current.user && Current.user.admin? %>
+        </li>
+
+        <li>
+            <%= link_to "Añadir producto", new_producto_path, class: "mx-2 py-2 font-semibold relative after:content-[''] after:absolute after:left-0 after:bottom-0 after:h-[2px] after:w-full after:bg-slate-800 after:scale-x-0 after:origin-left hover:after:scale-x-100 after:transition-transform after:duration-300 ease-in-out" if Current.user && Current.user.admin? %>
+        </li>
+        <li>
+            <%= link_to "Categorias", categories_path, class: "mx-2 py-2 font-semibold relative after:content-[''] after:absolute after:left-0 after:bottom-0 after:h-[2px] after:w-full after:bg-slate-800 after:scale-x-0 after:origin-left hover:after:scale-x-100 after:transition-transform after:duration-300 ease-in-out" if Current.user && Current.user.admin? %>
+        </li>
+        <li>
+            <%= link_to "Tallas", tallas_path, class: "mx-2 py-2 font-semibold relative after:content-[''] after:absolute after:left-0 after:bottom-0 after:h-[2px] after:w-full after:bg-slate-800 after:scale-x-0 after:origin-left hover:after:scale-x-100 after:transition-transform after:duration-300 ease-in-out" if Current.user && Current.user.admin? %>
+        </li>
+        <li>
+            <%= link_to "Favoritos", favorites_path, class: "mx-2 py-2 font-semibold relative after:content-[''] after:absolute after:left-0 after:bottom-0 after:h-[2px] after:w-full after:bg-slate-800 after:scale-x-0 after:origin-left hover:after:scale-x-100 after:transition-transform after:duration-300 ease-in-out" if Current.user && !Current.user.admin? %>
+        </li>
+      </ul>
+  
+  </div>
+
+  <div class="border-l-2 border-teal-500 pl-2 px-4 flex items-center h-[50px]">
+    <div class="border-2 border-blue-400 px-4 py-2 rounded-lg hover:bg-blue-400 hover:text-slate-950 transition duration-200 ease-in-out ">
+    
+      <% if Current.user.nil? %>
+        <%= link_to "Login", new_session_path, class:"mx-2  font-semibold" %>
+      <% end %>
+
+      <%= link_to "Log out", session_path(Current.user.id), data: { turbo_method: :delete, turbo_confirm: "¿Está seguro?" }, class:"mx-2 font-semibold" if Current.user %>
+    </div>
+  </div>
+
+</div>

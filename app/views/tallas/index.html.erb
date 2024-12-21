@@ -1,0 +1,44 @@
+
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-6">
+      <h1 class="text-center text-2xl font-bold text-teal-500">Tallas</h1>
+    </div>
+  </div>
+</div>
+<table class="table-auto w-[80%] mx-auto mt-3 border-collapse border border-gray-300 mb-3">
+  <thead class="bg-gray-100">
+    <tr>
+      <th class="border border-gray-300 px-4 py-2 text-left">Nombre</th>
+      <th class="border border-gray-300 px-4 py-2">Editar</th>
+      <th class="border border-gray-300 px-4 py-2">Eliminar</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @tallas.each do |talla| %>
+      <tr id="<%= dom_id(talla) %>" class="hover:bg-gray-100">
+        <td class="border border-gray-300 px-4 py-2"><%= talla.name %></td>
+        <td class="border border-gray-300 px-4 py-2 text-center">
+          <%= link_to "Edit", edit_talla_path(talla), class: "bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600 text-sm" %>
+        </td>
+        <td class="border border-gray-300 px-4 py-2 text-center">
+          <%= link_to "Delete", talla_path(talla), data: { turbo_method: :delete, turbo_confirm: "Alerta, ¿estás seguro?" }, class: "bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600 text-sm" %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+
+
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-6">
+      <%= link_to new_talla_path, class: "btn d-flex align-items-center custom-btn",  style: "text-align: left; border: 2px solid #17E010;" do %>
+        <%= image_tag 'icons/add.svg', width: 35, height: 35 %>
+        <p class="ml-2" style="font-weight: bold;">Nueva talla</p>
+      <% end %>
+    </div>
+  </div>
+</div>
+
